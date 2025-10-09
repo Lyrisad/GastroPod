@@ -368,6 +368,7 @@ svg {
     radial-gradient(100% 60% at 110% 120%, color-mix(in oklab, var(--brand) 12%, transparent), transparent 60%),
     var(--card);
 }
+
 .feature-card--highlight::before {
   content: "";
   position: absolute;
