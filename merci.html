@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Epi'Log — Merci</title>
+  <meta name="description" content="Merci pour votre achat.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="public/images/logo_cropped.png">
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Passer au contenu</a>
+
+  <header class="site-header" data-header>
+    <div class="container header-inner">
+      <a href="index.html#top" class="brand" aria-label="Epi'Log accueil">
+        <img class="brand-mark" src="public/images/logo_cropped.png" alt="Epi'Log">
+        <span class="brand-text">Epi'Log</span>
+      </a>
+
+      <nav class="nav" aria-label="Navigation principale">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" data-nav-toggle>
+          <span class="sr-only">Ouvrir le menu</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <ul id="menu" class="nav-list" data-menu>
+          <li><a href="index.html#produit">Produit</a></li>
+          <li><a href="index.html#avantages">Avantages</a></li>
+          <li><a href="index.html#fonctionnement">Fonctionnement</a></li>
+          <li><a href="index.html#application">Application</a></li>
+          <li class="nav-cta-item"><a class="btn btn--ghost" href="index.html#telechargement">Télécharger l’app</a></li>
+          <li>
+            <button class="icon-btn" id="theme-toggle" type="button" aria-label="Basculer le thème" title="Thème">
+              <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 4V2M12 22v-2M4.93 4.93 3.52 3.52M20.48 20.48l-1.41-1.41M4 12H2m20 0h-2M4.93 19.07 3.52 20.48M20.48 3.52l-1.41 1.41M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <section class="section thankyou" aria-labelledby="merci-title">
+      <div class="container thankyou-inner" data-animate="fade-up">
+        <h1 id="merci-title" class="section-title">Merci pour votre achat&nbsp;!</h1>
+        <p class="section-lead">Votre précommande a bien été prise en compte. Nous vous tiendrons informé(e) de sa disponibilité.</p>
+        <div class="app-ctas">
+          <a class="btn btn--secondary" href="index.html#produit">Retour à l'accueil</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img class="brand-mark" src="public/images/logo_cropped.png" alt="Epi'Log">
+        <span class="brand-text">Epi'Log</span>
+      </div>
+      <ul class="footer-links">
+        <li><a href="index.html#produit">Produit</a></li>
+        <li><a href="index.html#avantages">Avantages</a></li>
+        <li><a href="index.html#application">Application</a></li>
+      </ul>
+      <p class="footer-copy">© <span data-year></span> Epi'Log. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
