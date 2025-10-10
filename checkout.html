@@ -43,21 +43,94 @@
     <section class="section cart" aria-labelledby="cart-title">
       <div class="container cart-grid" data-animate="fade-up">
         <div class="cart-main">
-          <h1 id="cart-title" class="section-title">Votre panier</h1>
+          <h1 id="cart-title" class="section-title cart-title"><span class="cart-title-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 6h2l2 10h10l2-7H7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="9" cy="19" r="1.6" fill="currentColor"/>
+              <circle cx="17" cy="19" r="1.6" fill="currentColor"/>
+            </svg>
+          </span>Votre panier (précommande)</h1>
           <div class="cart-item">
             <div class="cart-thumb"><img src="public/images/dash.png" alt="Epi'Log"></div>
             <div class="cart-body">
-              <div class="cart-name">Epi'Log — Bague connectée</div>
+              <div class="cart-name">Epi'Log — <span class="text-gold">Bague connectée</span></div>
               <div class="cart-meta">Taille ajustable · Finition dorée</div>
+              <label class="cart-qty">Quantité
+                <select id="qty" class="qty-select" aria-label="Quantité">
+                  <option value="1" selected>1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </label>
             </div>
             <div class="cart-price">299,99 €</div>
           </div>
+
+          <div class="cart-perks-bubble">
+            <ul class="cart-perks">
+              <li>
+                <span class="perk-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 8h10v6H3z" stroke="currentColor" stroke-width="1.6"/>
+                    <path d="M13 10h4l3 3v3h-7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="7" cy="17" r="1.6" fill="currentColor"/>
+                    <circle cx="17" cy="17" r="1.6" fill="currentColor"/>
+                  </svg>
+                </span>
+                Livraison sous 48h
+              </li>
+              <li>
+                <span class="perk-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6l7-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                    <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                Service de remplacement pendant 24 mois
+              </li>
+              <li>
+                <span class="perk-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3" y="9" width="18" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/>
+                    <path d="M8 9V7a4 4 0 118 0v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    <circle cx="12" cy="14" r="1" fill="currentColor"/>
+                  </svg>
+                </span>
+                Paiement 100% sécurisé
+              </li>
+              <li>
+                <span class="perk-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 14v-2a7 7 0 0114 0v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    <rect x="3" y="12" width="4" height="6" rx="1.2" stroke="currentColor" stroke-width="1.6"/>
+                    <rect x="17" y="12" width="4" height="6" rx="1.2" stroke="currentColor" stroke-width="1.6"/>
+                  </svg>
+                </span>
+                Support 7j/7
+              </li>
+              <li>
+                <span class="perk-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 10h6a3 3 0 010 6H10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10 10l-2 2 2 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="12" cy="13" r="8" stroke="currentColor" stroke-width="1.6"/>
+                  </svg>
+                </span>
+                Garantie satisfait ou remboursé 30 jours
+              </li>
+            </ul>
+          </div>
         </div>
         <aside class="cart-summary">
-          <div class="summary-row"><span>Sous-total</span><span>299,99 €</span></div>
+          <div class="summary-row"><span>Sous-total</span><span data-subtotal>299,99 €</span></div>
           <div class="summary-row"><span>Livraison</span><span>Offerte</span></div>
-          <div class="summary-total"><span>Total</span><span>299,99 €</span></div>
-          <a class="btn btn--primary pay-btn" href="merci.html">Payer</a>
+          <div class="summary-total"><span>Total</span><span data-total>299,99 €</span></div>
+          <a class="btn btn--primary pay-btn" href="merci.html" data-pay>
+            <span class="pay-label">Payer</span>
+            <span class="pay-spinner" aria-hidden="true"></span>
+          </a>
           <p class="summary-hint">Ceci est une démonstration de panier. Aucun paiement ne sera effectué.</p>
         </aside>
       </div>

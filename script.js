@@ -200,4 +200,57 @@ document.addEventListener('DOMContentLoaded', () => {
   if (phoneBody) {
     phoneBody.addEventListener('click', () => runSequence());
   }
+
+  // Checkout: quantity select -> update totals
+  const qtySelect = document.getElementById('qty');
+  const subtotalEl = document.querySelector('[data-subtotal]');
+  const totalEl = document.querySelector('[data-total]');
+  const UNIT_PRICE = 299.99;
+
+  const formatEuro = (n) => n.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
+
+  const updateTotals = () => {
+    if (!qtySelect || !subtotalEl || !totalEl) return;
+    let q = parseInt(qtySelect.value, 10);
+    if (!Number.isFinite(q) || q < 1) {
+      q = 1;
+      qtySelect.value = '1';
+    }
+    const subtotal = UNIT_PRICE * q;
+    subtotalEl.textContent = formatEuro(subtotal);
+    totalEl.textContent = formatEuro(subtotal); // no shipping cost
+  };
+
+  if (qtySelect) {
+    qtySelect.addEventListener('change', updateTotals);
+    updateTotals();
+  }
+
+  // Fake payment loading + pass qty to merci
+  const payBtn = document.querySelector('[data-pay]');
+  if (payBtn && qtySelect) {
+    payBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      payBtn.classList.add('is-loading');
+      const qty = parseInt(qtySelect.value || '1', 10) || 1;
+      const total = (qty * UNIT_PRICE).toFixed(2);
+      setTimeout(() => {
+        const url = new URL(payBtn.getAttribute('href'), window.location.href);
+        url.searchParams.set('q', String(qty));
+        url.searchParams.set('t', total);
+        window.location.href = url.toString();
+      }, 1000);
+    });
+  }
+
+  // Merci: populate order summary from URL params
+  const qEl = document.querySelector('[data-q]');
+  const ttEl = document.querySelector('[data-tt]');
+  if (qEl && ttEl) {
+    const params = new URLSearchParams(window.location.search);
+    const q = Math.max(1, parseInt(params.get('q') || '1', 10) || 1);
+    const t = parseFloat(params.get('t') || String(UNIT_PRICE)).toFixed(2);
+    qEl.textContent = String(q);
+    ttEl.textContent = (Number.isFinite(parseFloat(t)) ? parseFloat(t) : UNIT_PRICE).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
+  }
 });
