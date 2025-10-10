@@ -86,6 +86,10 @@ svg {
 .section {
   padding: 96px 0;
 }
+.hero + .section {
+  /* Reduce the gap between the hero and the next section */
+  padding-top: 56px;
+}
 .section-title {
   margin: 0 0 12px;
   font-size: 40px;
@@ -132,6 +136,7 @@ svg {
   top: 0;
   z-index: 100;
   background: color-mix(in oklab, var(--bg-elev) 86%, transparent);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
   backdrop-filter: saturate(140%) blur(10px);
   border-bottom: 1px solid var(--border);
 }
@@ -317,12 +322,28 @@ svg {
   aspect-ratio: 1/1.25;
   border-radius: 32px;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 .pod-body img {
-  width: 85%;
-  height: 85%;
+  width: 100%;
+  height: 115%;
   object-fit: cover;
   display: block;
+}
+.pod-shadow {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 10px;
+  height: 26px;
+  background: radial-gradient(60% 80% at 50% 50%, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 80%);
+  filter: blur(10px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+html[data-theme="dark"] .pod-shadow {
+  background: radial-gradient(60% 80% at 50% 50%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 80%);
 }
 .pod-glow {
   position: absolute;
@@ -817,6 +838,72 @@ html[data-theme="light"] .phone-screen {
   width: 64%;
 }
 
+/* Preloader */
+.preloader {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(120% 80% at 80% -10%, color-mix(in oklab, var(--brand-2) 8%, transparent), transparent 60%),
+    radial-gradient(100% 60% at -10% 0%, color-mix(in oklab, var(--brand) 8%, transparent), transparent 60%),
+    var(--bg);
+  z-index: 9999;
+  pointer-events: none;
+  clip-path: circle(150% at 50% 50%);
+  transition: clip-path 1s cubic-bezier(0.2, 0.8, 0.2, 1), opacity .6s ease;
+  will-change: clip-path, opacity;
+}
+.preloader::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  background: radial-gradient(55% 55% at 50% 50%, rgba(0,0,0,0.28), transparent 70%);
+}
+.preloader-inner { position: relative; display: grid; place-items: center; gap: 18px; }
+.pl-stage { opacity: 0; transform: translateY(10px) scale(0.985); }
+.pl-stage--1 .pl-tagline {
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  font-size: 22px;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.pl-stage--2 { position: relative; display: inline-grid; grid-auto-flow: column; gap: 10px; align-items: center; }
+.pl-stage--2::before {
+  content: "";
+  position: absolute;
+  inset: -60px;
+  border-radius: 999px;
+  background: radial-gradient(50% 50% at 50% 50%, color-mix(in oklab, var(--brand-2) 18%, transparent), transparent 70%);
+  filter: blur(26px);
+  z-index: -1;
+}
+.pl-logo { width: 28px; height: 28px; border-radius: 8px; box-shadow: 0 8px 24px -12px var(--shadow); transform: scale(0.98); }
+.pl-brand { font-weight: 800; letter-spacing: -0.02em; font-size: 22px; }
+
+/* Reveal animation states controlled by JS */
+.preloader.is-stage-1 .pl-stage--1 { opacity: 1; transform: none; transition: opacity .7s cubic-bezier(0.2, 0.7, 0.2, 1), transform .7s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.preloader.is-stage-2 .pl-stage--2 { opacity: 1; transform: none; transition: opacity .7s cubic-bezier(0.2, 0.7, 0.2, 1), transform .7s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.preloader.is-reveal { clip-path: circle(0% at 50% 50%); opacity: 0; }
+
+/* Page hold: prevent content flashes under preloader */
+html.is-preloading body { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pl-stage,
+  .preloader.is-stage-1 .pl-stage--1,
+  .preloader.is-stage-2 .pl-stage--2,
+  .preloader,
+  .preloader.is-reveal {
+    transition: none !important;
+    clip-path: none !important;
+  }
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .hero-grid {
@@ -836,6 +923,9 @@ html[data-theme="light"] .phone-screen {
 @media (max-width: 720px) {
   .section {
     padding: 72px 0;
+  }
+  .hero + .section {
+    padding-top: 44px;
   }
   .hero-title {
     font-size: 42px;
@@ -981,6 +1071,7 @@ html[data-theme="light"] .phone-screen {
 .notif-bubble {
   opacity: 0;
   transform: translateY(8px) scale(0.98);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
   backdrop-filter: blur(8px) saturate(140%);
   background: color-mix(in oklab, var(--bg-elev) 70%, transparent);
   border: 1px solid color-mix(in oklab, var(--border) 60%, transparent);
