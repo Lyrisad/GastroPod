@@ -545,7 +545,11 @@ html[data-theme="light"] .feature-card--highlight .feature-icon {
   );
   z-index: -1;
   transition: opacity 0.3s ease;
-  opacity: 0.8;
+  opacity: 0;
+}
+.phone-mock:hover .phone-body::before,
+.phone-body:hover::before {
+  opacity: 0;
 }
 .phone-body::after {
   content: "";
