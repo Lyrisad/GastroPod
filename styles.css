@@ -210,6 +210,10 @@ svg {
 .nav-list a:hover {
   background: var(--bg-soft);
 }
+.nav-preorder { display: inline-grid; grid-auto-flow: column; align-items: center; gap: 8px; place-items: center; padding: 8px 12px; border-radius: 999px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #fff !important; font-weight: 700; box-shadow: 0 8px 20px -12px color-mix(in oklab, var(--brand-2) 50%, transparent); transition: filter .15s ease, box-shadow .15s ease, background .15s ease; }
+.nav-preorder:hover { filter: brightness(1.08) saturate(1.02); box-shadow: 0 10px 24px -12px color-mix(in oklab, var(--brand-2) 60%, transparent); }
+.nav-list a.nav-preorder:hover { background: linear-gradient(135deg, var(--brand), var(--brand-2)); }
+.nav-preorder svg { width: 18px; height: 18px; }
 .nav-cta-item {
   margin-left: 8px;
 }
@@ -252,6 +256,12 @@ svg {
   background: var(--bg-elev);
   border-color: var(--border);
 }
+.btn--dark {
+  color: var(--text);
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+}
+.btn--dark:hover { border-color: color-mix(in oklab, var(--brand) 40%, var(--border)); }
 .btn--secondary:hover {
   border-color: color-mix(in oklab, var(--brand) 40%, var(--border));
 }
@@ -289,6 +299,10 @@ svg {
   gap: 12px;
   flex-wrap: wrap;
 }
+.hero-ctas .btn svg { margin-left: 8px; }
+.hero-ctas .btn.btn--ghost { border-color: var(--border); }
+.link-hero { display: inline-grid; grid-auto-flow: column; align-items: center; gap: 8px; color: var(--text); text-decoration: none; font-weight: 600; }
+.link-hero:hover { color: color-mix(in oklab, var(--brand) 40%, var(--text)); }
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -305,10 +319,13 @@ svg {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-top: 18px;
+  margin-top: 24px;
   color: var(--muted);
   flex-wrap: wrap;
 }
+
+.hero-more { margin-top: 19px; }
+
 .trust-item {
   padding: 8px 12px;
   background: var(--bg-elev);
@@ -1135,7 +1152,7 @@ html.is-preloading body { overflow: hidden; }
     padding: 10px;
     flex-direction: column;
     align-items: stretch;
-    gap: 6px;
+    gap: 10px;
     min-width: 220px;
     box-shadow: 0 18px 36px -16px var(--shadow);
     display: none;
