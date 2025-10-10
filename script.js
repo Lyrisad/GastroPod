@@ -253,4 +253,11 @@ document.addEventListener('DOMContentLoaded', () => {
     qEl.textContent = String(q);
     ttEl.textContent = (Number.isFinite(parseFloat(t)) ? parseFloat(t) : UNIT_PRICE).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
   }
+
+  // Merci: generate 4-digit order id
+  const oidEl = document.querySelector('[data-oid]');
+  if (oidEl) {
+    const rand = Math.floor(1000 + Math.random() * 9000);
+    oidEl.textContent = String(rand);
+  }
 });

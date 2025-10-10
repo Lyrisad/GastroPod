@@ -947,11 +947,14 @@ html[data-theme="light"] .phone-screen {
   padding: 28px;
   box-shadow: 0 20px 40px -20px var(--shadow);
 }
+.order-id { margin: 6px 0 6px; color: var(--muted); font-weight: 600; }
+.order-id [data-oid] { color: var(--brand); font-weight: 800; }
 
 .order-card { text-align: left; margin: 18px auto 8px; background: var(--bg-elev); border: 1px solid var(--border); border-radius: 14px; padding: 14px; max-width: 640px; }
 .order-row { display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: center; font-weight: 700; }
+.order-item { font-size: 15px; }
 .order-qty { color: var(--muted); font-weight: 600; }
-.order-price { font-weight: 800; }
+.order-price { font-weight: 800; font-size: 15px;}
 .order-meta { margin-top: 8px; color: var(--muted); font-size: 14px; }
 .order-note { margin-top: 8px; color: var(--muted); font-size: 14px; }
 /* Footer */
